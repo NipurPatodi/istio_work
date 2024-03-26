@@ -1,0 +1,31 @@
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: "selective-port-mtls"
+  namespace: "ray-under-istio"
+spec:
+  selector:
+    matchLabels:
+      ray.io/cluster: raycluster-complete
+  mtls:
+    mode: STRICT
+  portLevelMtls:
+    #lively ness prob
+    8080:
+      mode: STRICT
+    # GCS
+    6379:
+      mode: STRICT
+    # Client
+    10001:
+      mode: STRICT
+    # Metric/dashboard
+    8265:
+      mode: PERMISSIVE
+    # Readiness prob
+    52365:
+      mode: STRICT
+    # Serve port
+    8000:
+      mode: STRICT
+
