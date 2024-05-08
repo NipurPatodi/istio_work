@@ -1,0 +1,14 @@
+host: 127.0.0.1
+port: 8000
+
+import_path: fruit:deployment_graph
+
+runtime_env: {}
+
+deployments:
+
+- name: FruitMarket
+  num_replicas: 1
+
+
+- name: DAGDriver
